@@ -34,3 +34,26 @@
     align-items: center
   }
 }
+
+#inversify-config {
+  h3 {
+    text-transform: lowercase;
+  }
+
+  code {
+    font-size: large;
+  }
+}
+
+#inversify-modules {
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+
+    font-size: xx-large;
+  }
+
+  pre {
+    max-width: 49%;
+  }
+}

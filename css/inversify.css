@@ -21,3 +21,17 @@
   display: flex;
   justify-content: space-around;
   align-items: center; }
+
+#inversify-config h3 {
+  text-transform: lowercase; }
+
+#inversify-config code {
+  font-size: large; }
+
+#inversify-modules > div {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: xx-large; }
+
+#inversify-modules pre {
+  max-width: 49%; }
