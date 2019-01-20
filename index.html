@@ -309,6 +309,20 @@ container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inSingletonScope();
 container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inRequestScope();</code></pre>
                     </section>
 
+                    <section id="inversify-dynamic">
+                        <h3>Injecting dynamic value</h3>
+                        <pre><code>container
+  .bind(LOGGER)
+  .toDynamicValue((context: interfaces.Context) => {
+    const c = context.container.get&lt;Configuration&gt;(Configuration);
+    return new LoggerBuilder()
+      .setEnvironment(c.env)
+      .useDefaults()
+      .getLogger();
+  })
+  .inSingletonScope()</code></pre>
+                    </section>
+
                 </section>
 			</div>
 		</div>
