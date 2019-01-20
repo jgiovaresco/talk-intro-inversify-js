@@ -13,3 +13,11 @@
     max-width: 49%; }
   .inversify-code-blocks .ligature {
     font-family: "Fira Code", sans-serif; }
+
+.reveal section img.plain {
+  background: none; }
+
+#inversify-library > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }

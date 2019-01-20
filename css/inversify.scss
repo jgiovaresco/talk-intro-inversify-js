@@ -21,3 +21,16 @@
     font-family: "Fira Code", sans-serif;
   }
 }
+
+.reveal section img.plain {
+  background: none;
+}
+
+
+#inversify-library {
+  & > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+  }
+}
