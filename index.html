@@ -34,7 +34,147 @@
                     <h3>Dependency Inversion in TypeScript applications</h3>
                 </section>
 
-				<section>Slide 2</section>
+                <section>
+                    <section data-markdown>
+                    <textarea data-template>
+                    ## Coupling
+                    > Coupling between modules occurs when one
+                    > module directly references another module.
+
+                    > In other words, one module “knows” about another module
+                    </textarea>
+                    </section>
+
+                    <section data-markdown>
+                    <textarea data-template>
+                    ## OO designs principles
+
+                    * Favor *object composition* over *class inheritance*
+                    * Depend upon Abstraction. Do not depend upon concretions
+                    </textarea>
+                    </section>
+
+                    <section>
+                        <h2>Dependency Injection</h2>
+                        <div class="inversify-code-blocks"
+                             style="font-size: xx-large">
+                        <pre><code>class Ninja implements INinja {
+    private katana: Katana
+    private shuriken: Shuriken
+
+    constructor() {
+        this.katana = new Katana();
+        this.shuriken = new Shuriken();
+    }
+
+    public fight() { this.katana.hit() }
+    public sneak() { this.shuriken.throw() }
+}</code></pre>
+
+                            <pre><code>class Ninja implements INinja {
+    private katana: Katana
+    private shuriken: Shuriken
+
+    constructor(katana: Katana, shuriken: Shuriken) {
+        this.katana = katana;
+        this.shuriken = shuriken;
+    }
+
+    public fight() { this.katana.hit() }
+    public sneak() { this.shuriken.throw() }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Dependency Inversion</h2>
+                        <div class="inversify-code-blocks"
+                             style="font-size: xx-large">
+                        <pre><code>class Ninja implements INinja {
+    private katana: Katana
+    private shuriken: Shuriken
+
+    constructor(katana: Katana, shuriken: Shuriken) {
+        this.katana = katana;
+        this.shuriken = shuriken;
+    }
+
+    public fight() { this.katana.hit() }
+    public sneak() { this.shuriken.throw() }
+}</code></pre>
+
+                            <pre><code>class Ninja implements INinja {
+    private katana: IKatana
+    private shuriken: IShuriken
+
+    constructor(katana: IKatana, shuriken: IShuriken) {
+        this.katana = katana;
+        this.shuriken = shuriken;
+    }
+
+    public fight() { this.katana.hit() }
+    public sneak() { this.shuriken.throw() }
+}</code></pre>
+                        </div>
+
+                        <div class="inversify-code-blocks">
+                            <pre class="ligature">Ninja  -->  Katana</pre>
+                            <pre class="ligature">Ninja  -->  IKatana  <--  Katana</pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Composition root</h3>
+
+                        <blockquote>a unique location in an application where
+                            modules are composed together
+                        </blockquote>
+
+                        <div class="inversify-code-blocks"
+                             style="font-size: xx-large">
+                        <pre><code>constructor(katana: IKatana, shuriken: IShuriken) {
+    this.katana = new Katana();
+    this.shuriken = new Shuriken();
+}</code></pre>
+
+                            <pre><code>import { Ninja } from './ninja'
+import { Katana } from './katana'
+import { Shuriken } from './shuriken'
+
+const katata = new Katana()
+const shuriken = new Shuriken()
+
+export const ninja = new Ninja(katata, shuriken)</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Inversion of Control container</h3>
+                        <div class="inversify-code-blocks"
+                             style="font-size: xx-large">
+                        <pre><code>import { Container } from 'inversify'
+import {
+    KATANA,
+    NINJA,
+    SHURIKEN,
+} from './inversify.type.ts'
+import { INinja, Ninja } from './ninja'
+import { IKatana, Katana } from './katana'
+import { IShuriken, Shuriken } from './shuriken'
+
+export const container = new Container()
+container.bind&lt;INinja&gt;(NINJA).to(Ninja)
+container.bind&lt;IKatana&gt;(KATANA).to(Katana)
+container.bind&lt;IShuriken&gt;(SHURIKEN).to(Shuriken)</code></pre>
+
+                            <pre><code>import { container } from './inversify.config.ts'
+import { NINJA } from './inversify.type.ts'
+import { INinja } from './ninja'
+
+export const ninja = container.get&lt;INinja&gt;(NINJA)</code></pre>
+                        </div>
+                    </section>
+                </section>
 			</div>
 		</div>
 

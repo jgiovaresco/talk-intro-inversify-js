@@ -2,6 +2,22 @@
  * INVERSIFY TALK STYLES
  *********************************************/
 
+@import url(../lib/font/fira/fira_code.css);
+
 .logo {
   width: 150px;
+}
+
+.inversify-code-blocks {
+  display: flex;
+  justify-content: space-between;
+
+
+  pre {
+    max-width: 49%;
+  }
+
+  .ligature {
+    font-family: "Fira Code", sans-serif;
+  }
 }
