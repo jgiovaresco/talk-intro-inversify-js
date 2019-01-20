@@ -301,6 +301,14 @@ export const SHURIKEN = Symbol.for('shuriken')</code></pre>
                         <p>Symbols help us to avoid naming collisions</p>
                     </section>
 
+                    <section id="inversify-scope">
+                        <h3>Controlling the scope of the dependencies</h3>
+
+                        <pre><code>container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inTransientScope(); // Default
+container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inSingletonScope();
+container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inRequestScope();</code></pre>
+                    </section>
+
                 </section>
 			</div>
 		</div>
