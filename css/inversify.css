@@ -35,3 +35,11 @@
 
 #inversify-modules pre {
   max-width: 49%; }
+
+#inversify-abstractions > div {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: xx-large; }
+
+#inversify-abstractions pre {
+  max-width: 49%; }
