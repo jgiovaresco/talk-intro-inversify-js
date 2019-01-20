@@ -45,5 +45,6 @@
   max-width: 49%; }
 
 #inversify-scope code,
-#inversify-dynamic code {
+#inversify-dynamic code,
+#inversify-multiinject code {
   font-size: large; }

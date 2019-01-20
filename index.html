@@ -323,6 +323,16 @@ container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inRequestScope();</code>
   .inSingletonScope()</code></pre>
                     </section>
 
+                    <section id="inversify-multiinject">
+                        <h3>Multi-injection</h3>
+                        <pre><code>constructor(
+    @multiInject(COMMAND_HANDLER)
+    private handlers: Array&lt;CommandHandler&gt;,
+    @inject(LOGGER)
+    private readonly logger: ILogger,
+  ) {}</code></pre>
+                    </section>
+
                 </section>
 			</div>
 		</div>
