@@ -169,6 +169,12 @@ container.bind&lt;IShuriken&gt;(SHURIKEN).to(Shuriken)</code></pre>
                             <li>IoC container is aware of all modules</li>
                             <li>Coupling takes place in one unique place</li>
                         </ul>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>Every binds need a name</li>
+                            </ul>
+                        </aside>
                     </section>
 
                     <section id="inversify-abstractions">
@@ -212,6 +218,17 @@ export const SHURIKEN = Symbol.for('shuriken')</code></pre>
                         </div>
 
                         <p>Symbols help us to avoid naming collisions</p>
+
+                        <aside class="notes">
+                            <ul>
+                                <li>All classes bound needs
+                                    <code>@injectable()</code> descriptor
+                                </li>
+                                <li>You can decorate external classes using
+                                    <code>inversify.decorate()</code> function
+                                </li>
+                            </ul>
+                        </aside>
                     </section>
 
                     <section id="inversify-scope">
