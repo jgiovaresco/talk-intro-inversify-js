@@ -6,6 +6,18 @@
 .logo {
   width: 150px; }
 
+.me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px !important; }
+  .me img {
+    border-radius: 50%;
+    width: 100px; }
+  .me p {
+    padding: 0;
+    margin: 0; }
+
 .inversify-code-blocks {
   display: flex;
   justify-content: space-between; }
