@@ -171,47 +171,6 @@ container.bind&lt;IShuriken&gt;(SHURIKEN).to(Shuriken)</code></pre>
                         </ul>
                     </section>
 
-                    <section id="inversify-modules">
-                        <h3>Declaring container modules</h3>
-                        <div>
-                        <pre><code>// warriors.module.ts
-import { ContainerModule } from 'inversify'
-import { INinja, Ninja } from './ninja'
-
-export const warriors = new ContainerModule(bind => {
-    bind&lt;INinja&gt;(NINJA).to(Ninja)
-})</code></pre>
-                        <pre><code>// weapons.module.ts
-import { ContainerModule } from 'inversify'
-import { IKatana, Katana } from './katana'
-import { IShuriken, Shuriken } from './shuriken'
-
-export const weapons = new ContainerModule(bind => {
-    bind&lt;IKatana&gt;(KATANA).to(Katana)
-    bind&lt;IShuriken&gt;(SHURIKEN).to(Shuriken)
-})</code></pre>
-                        <pre><code>// inversify.config.ts
-import { Container } from 'inversify'
-import { warriors } from './warriors.module.ts'
-import { weapons } from './weapons.module.ts'
-
-export const container = new Container()
-container.load(weapons)
-container.load(warriors)</code></pre>
-                        <pre><code>// index.ts
-import { container } from './inversify.config.ts'
-import { NINJA } from './inversify.type.ts'
-import { INinja } from './ninja'
-
-export const ninja = container.get&lt;INinja&gt;(NINJA)</code></pre>
-                        </div>
-
-                        <p>
-                        <code>ContainerModule</code> are used when the
-                        <code>inversify.config.ts</code> file becomes too large
-                        </p>
-                    </section>
-
                     <section id="inversify-abstractions">
                         <h3>Using symbol for abstractions</h3>
                         <div>
@@ -285,6 +244,47 @@ container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inRequestScope();</code>
     @inject(LOGGER)
     private readonly logger: ILogger,
   ) {}</code></pre>
+                    </section>
+
+                    <section id="inversify-modules">
+                        <h3>Declaring container modules</h3>
+                        <div>
+                        <pre><code>// warriors.module.ts
+import { ContainerModule } from 'inversify'
+import { INinja, Ninja } from './ninja'
+
+export const warriors = new ContainerModule(bind => {
+    bind&lt;INinja&gt;(NINJA).to(Ninja)
+})</code></pre>
+                            <pre><code>// weapons.module.ts
+import { ContainerModule } from 'inversify'
+import { IKatana, Katana } from './katana'
+import { IShuriken, Shuriken } from './shuriken'
+
+export const weapons = new ContainerModule(bind => {
+    bind&lt;IKatana&gt;(KATANA).to(Katana)
+    bind&lt;IShuriken&gt;(SHURIKEN).to(Shuriken)
+})</code></pre>
+                            <pre><code>// inversify.config.ts
+import { Container } from 'inversify'
+import { warriors } from './warriors.module.ts'
+import { weapons } from './weapons.module.ts'
+
+export const container = new Container()
+container.load(weapons)
+container.load(warriors)</code></pre>
+                            <pre><code>// index.ts
+import { container } from './inversify.config.ts'
+import { NINJA } from './inversify.type.ts'
+import { INinja } from './ninja'
+
+export const ninja = container.get&lt;INinja&gt;(NINJA)</code></pre>
+                        </div>
+
+                        <p>
+                            <code>ContainerModule</code> are used when the
+                            <code>inversify.config.ts</code> file becomes too large
+                        </p>
                     </section>
 
                     <section data-markdown>
