@@ -239,6 +239,13 @@ container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inSingletonScope();
 container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inRequestScope();</code></pre>
                     </section>
 
+                    <section id="inversify-constant">
+                        <h3>Injecting constant value</h3>
+                        <pre><code>container
+  .bind(CONFIG)
+  .toConstantValue(new Configuration())</code></pre>
+                    </section>
+
                     <section id="inversify-dynamic">
                         <h3>Injecting dynamic value</h3>
                         <pre><code>container
