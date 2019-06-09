@@ -167,23 +167,49 @@ export const ninja = new Ninja(katata, shuriken)</code></pre>
                         </div>
                     </section>
 
+                    <section id="inversify-decorator">
+                        <div>
+                        <pre><code>// ninja.ts
+import { injectable, inject } from 'inversify'
+
+@injectable()
+export class Ninja implements INinja {
+    private katana: IKatana
+    private shuriken: IShuriken
+
+    constructor(
+        @inject(IKatana) katana: IKatana,
+        @inject(IShuriken) shuriken: IShuriken
+    ) {
+        this.katana = katana;
+        this.shuriken = shuriken;
+    }
+}</code></pre>
+                        <aside class="notes">
+                            <ul>
+                                <li>All classes bound needs
+                                    <code>@injectable()</code> descriptor
+                                </li>
+                                <li>You can decorate external classes using
+                                    <code>inversify.decorate()</code> function
+                                </li>
+                            </ul>
+                        </aside>
+                    </section>
+
                     <section id="inversify-config">
                         <h3>inversify.config.ts</h3>
 
                         <pre><code>import { Container } from 'inversify'
-import {
-    KATANA,
-    NINJA,
-    SHURIKEN,
-} from './inversify.type.ts'
+
 import { INinja, Ninja } from './ninja'
 import { IKatana, Katana } from './katana'
 import { IShuriken, Shuriken } from './shuriken'
 
 export const container = new Container()
-container.bind&lt;INinja&gt;(NINJA).to(Ninja)
-container.bind&lt;IKatana&gt;(KATANA).to(Katana)
-container.bind&lt;IShuriken&gt;(SHURIKEN).to(Shuriken)</code></pre>
+container.bind&lt;INinja&gt;(INinja).to(Ninja)
+container.bind&lt;IKatana&gt;(IKatana).to(Katana)
+container.bind&lt;IShuriken&gt;(IShuriken).to(Shuriken)</code></pre>
 
                         <ul>
                             <li>IoC container is aware of all modules</li>
@@ -254,9 +280,9 @@ export const SHURIKEN = Symbol.for('shuriken')</code></pre>
                     <section id="inversify-scope">
                         <h3>Controlling the scope of the dependencies</h3>
 
-                        <pre><code>container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inTransientScope(); // Default
-container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inSingletonScope();
-container.bind&lt;Shuriken&gt;("Shuriken").to(Shuriken).inRequestScope();</code></pre>
+                        <pre><code>container.bind&lt;Shuriken&gt;(SHURIKEN).to(Shuriken).inTransientScope(); // Default
+container.bind&lt;Shuriken&gt;(SHURIKEN).to(Shuriken).inSingletonScope();
+container.bind&lt;Shuriken&gt;(SHURIKEN).to(Shuriken).inRequestScope();</code></pre>
                     </section>
 
                     <section id="inversify-constant">
