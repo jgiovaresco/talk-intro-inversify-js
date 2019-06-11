@@ -56,39 +56,7 @@
 
                 <section>
                     <section>
-                        <h2>Dependency Injection</h2>
-                        <div class="inversify-code-blocks"
-                             style="font-size: xx-large">
-                        <pre><code>class Ninja implements INinja {
-    private katana: Katana
-    private shuriken: Shuriken
-
-    constructor() {
-        this.katana = new Katana();
-        this.shuriken = new Shuriken();
-    }
-
-    public fight() { this.katana.hit() }
-    public sneak() { this.shuriken.throw() }
-}</code></pre>
-
-                            <pre><code>class Ninja implements INinja {
-    private katana: Katana
-    private shuriken: Shuriken
-
-    constructor(katana: Katana, shuriken: Shuriken) {
-        this.katana = katana;
-        this.shuriken = shuriken;
-    }
-
-    public fight() { this.katana.hit() }
-    public sneak() { this.shuriken.throw() }
-}</code></pre>
-                        </div>
-                    </section>
-
-                    <section>
-                        <h2>Dependency Inversion</h2>
+                        <h2>Dependency <br />Injection / Inversion</h2>
                         <div class="inversify-code-blocks"
                              style="font-size: xx-large">
                         <pre><code>class Ninja implements INinja {
@@ -133,17 +101,12 @@
 
                         <div class="inversify-code-blocks"
                              style="font-size: xx-large">
-                        <pre><code>constructor(katana: IKatana, shuriken: IShuriken) {
-    this.katana = new Katana();
-    this.shuriken = new Shuriken();
-}</code></pre>
-
                             <pre><code>import { Ninja } from './ninja'
 import { Katana } from './katana'
 import { Shuriken } from './shuriken'
 
-const katata = new Katana()
-const shuriken = new Shuriken()
+export const katata = new Katana()
+export const shuriken = new Shuriken()
 
 export const ninja = new Ninja(katata, shuriken)</code></pre>
                         </div>
