@@ -60,29 +60,29 @@
                         <div class="inversify-code-blocks"
                              style="font-size: xx-large">
                         <pre><code>class Ninja implements INinja {
-    private katana: Katana
-    private shuriken: Shuriken
+  private katana: Katana
+  private shuriken: Shuriken
 
-    constructor(katana: Katana, shuriken: Shuriken) {
-        this.katana = katana;
-        this.shuriken = shuriken;
-    }
+  constructor(katana: Katana, shuriken: Shuriken) {
+      this.katana = katana;
+      this.shuriken = shuriken;
+  }
 
-    public fight() { this.katana.hit() }
-    public sneak() { this.shuriken.throw() }
+  public fight() { this.katana.hit() }
+  public sneak() { this.shuriken.throw() }
 }</code></pre>
 
                             <pre><code>class Ninja implements INinja {
-    private katana: IKatana
-    private shuriken: IShuriken
+  private katana: IKatana
+  private shuriken: IShuriken
 
-    constructor(katana: IKatana, shuriken: IShuriken) {
-        this.katana = katana;
-        this.shuriken = shuriken;
-    }
+  constructor(katana: IKatana, shuriken: IShuriken) {
+      this.katana = katana;
+      this.shuriken = shuriken;
+  }
 
-    public fight() { this.katana.hit() }
-    public sneak() { this.shuriken.throw() }
+  public fight() { this.katana.hit() }
+  public sneak() { this.shuriken.throw() }
 }</code></pre>
                         </div>
 
@@ -137,16 +137,13 @@ import { injectable, inject } from 'inversify'
 
 @injectable()
 export class Ninja implements INinja {
-    private katana: IKatana
-    private shuriken: IShuriken
-
-    constructor(
-        @inject(IKatana) katana: IKatana,
-        @inject(IShuriken) shuriken: IShuriken
-    ) {
-        this.katana = katana;
-        this.shuriken = shuriken;
-    }
+  constructor(
+      @inject(IKatana) private readonly katana: IKatana,
+      @inject(IShuriken) private readonly shuriken: IShuriken
+  ) {
+      this.katana = katana;
+      this.shuriken = shuriken;
+  }
 }</code></pre>
                         <aside class="notes">
                             <ul>
@@ -191,7 +188,7 @@ container.bind&lt;IShuriken&gt;(IShuriken).to(Shuriken)</code></pre>
                         <div>
                         <pre><code>// ninja.ts
 import { injectable, inject } from 'inversify'
-import { KATANA, SHURIKEN } from './inversify.type.ts'
+import { KATANA, SHURIKEN } from './inversify.type'
 
 @injectable()
 export class Ninja implements INinja {
